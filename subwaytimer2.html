@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>대전 지하철 1호선 타이머</h2>
+
+<p>출발역을 선택하세요:</p>
+
+<select id="startStation">
+  <option value="반석">반석역</option>
+  <option value="지족">지족역</option>
+  <option value="노은">노은역</option>
+  <option value="월드컵경기장">월드컵경기장역</option>
+  <option value="현충원">현충원역</option>
+  <option value="구암">구암역</option>
+  <option value="유성온천">유성온천역</option>
+  <option value="갑천">갑천역</option>
+  <option value="월평">월평역</option>
+  <option value="갈마">갈마역</option>
+  <option value="정부청사">정부청사역</option>
+  <option value="시청">시청역</option>
+  <option value="탄방">탄방역</option>
+  <option value="용문">용문역</option>
+  <option value="오룡">오룡역</option>
+  <option value="서대전네거리">서대전네거리역</option>
+  <option value="중구청">중구청역</option>
+  <option value="중앙로">중앙로역</option>
+  <option value="대전">대전역</option>
+  <option value="대동">대동역</option>
+  <option value="신흥">신흥역</option>
+  <option value="판암">판암역</option>
+</select>
+
+<p>도착역을 선택하세요:</p>
+
+<select id="endStation">
+  <option value="반석">반석역</option>
+  <option value="지족">지족역</option>
+  <option value="노은">노은역</option>
+  <option value="월드컵경기장">월드컵경기장역</option>
+  <option value="현충원">현충원역</option>
+  <option value="구암">구암역</option>
+  <option value="유성온천">유성온천역</option>
+  <option value="갑천">갑천역</option>
+  <option value="월평">월평역</option>
+  <option value="갈마">갈마역</option>
+  <option value="정부청사">정부청사역</option>
+  <option value="시청">시청역</option>
+  <option value="탄방">탄방역</option>
+  <option value="용문">용문역</option>
+  <option value="오룡">오룡역</option>
+  <option value="서대전네거리">서대전네거리역</option>
+  <option value="중구청">중구청역</option>
+  <option value="중앙로">중앙로역</option>
+  <option value="대전">대전역</option>
+  <option value="대동">대동역</option>
+  <option value="신흥">신흥역</option>
+  <option value="판암">판암역</option>
+</select>
+
+<button onclick="startTimer()">시작</button>
+
+<p id="time"></p>
+
+<script>
+// 대전 지하철 1호선의 역 목록
+const stations = ["반석", "지족", "노은", "월드컵경기장", "현충원", "구암", "유성온천", "갑천", "월평", "갈마", "정부청사", "시청", "탄방", "용문", "오룡", "서대전네거리", "중구청", "중앙로", "대전", "대동", "신흥", "판암"];
+
+// 역간 이동 시간 (단위: 분)
+const stationTimes = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]; // This is an example. Please replace with actual values.
+
+let time = 0;
+let timerId = null;
+
+// 시간이 다 되면 소리를 넣는 코드
+let alarmSound = new Audio('./bibibibip_4s.mp3');
+
+function calculateTravelTime(startStation, endStation) {
+    const startIndex = stations.indexOf(startStation);
+    const endIndex = stations.indexOf(endStation);
+
+    if (startIndex < endIndex) {
+        for (let i = startIndex; i < endIndex; i++) {
+            time += stationTimes[i];
+        }
+    } else {
+        for (let i = endIndex; i < startIndex; i++) {
+            time += stationTimes[i];
+        }
+    }
+
+    return time;
+}
+
+function startTimer() {
+  var startStation = document.getElementById("startStation").value;
+  var endStation = document.getElementById("endStation").value;
+  time = calculateTravelTime(startStation, endStation) * 60; // convert minutes to seconds
+  document.getElementById("time").innerHTML = "이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
+
+  // 타이머 초기화
+  if (timerId !== null) {
+    clearInterval(timerId);
+  }
+
+  // 새로운 타이머 시작
+  timerId = setInterval(function() {
+    time -= 1; // 1초씩 감소
+    if (time <= 0) {
+      clearInterval(timerId);
+      document.getElementById("time").innerHTML = "도착하였습니다!";
+      alarmSound.play(); // 알람소리 내기
+    } else {
+      document.getElementById("time").innerHTML = "남은 이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
