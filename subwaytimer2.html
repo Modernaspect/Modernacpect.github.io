@@ -97,7 +97,7 @@ function calculateTravelTime(startStation, endStation) {
 function startTimer() {
   var startStation = document.getElementById("startStation").value;
   var endStation = document.getElementById("endStation").value;
-  time = calculateTravelTime(startStation, endStation) * 60; // convert minutes to seconds
+  time = calculateTravelTime(startStation, endStation) * 60; // 입력분을 시간값에 맞는 단위로 변환함 1m = 60s
   document.getElementById("time").innerHTML = "이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
 
   // 타이머 끝났을 때 초기화
@@ -105,7 +105,7 @@ function startTimer() {
     clearInterval(timerId);
   }
 
-  // 새로운 타이머 시작
+  // 타이머 시작
   timerId = setInterval(function() {
     time -= 1; // 1초씩 감소
     if (time <= 0) {
@@ -113,7 +113,7 @@ function startTimer() {
       document.getElementById("time").innerHTML = "도착하였습니다!";
       alarmSound.play(); // 알람소리 내기
     } else {
-      document.getElementById("time").innerHTML = "남은 이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
+      document.getElementById("time").innerHTML = "남은 이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초"; //분 초 현시 00:00
     }
   }, 1000);
 }
