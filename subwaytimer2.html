@@ -69,7 +69,7 @@
 const stations = ["반석", "지족", "노은", "월드컵경기장", "현충원", "구암", "유성온천", "갑천", "월평", "갈마", "정부청사", "시청", "탄방", "용문", "오룡", "서대전네거리", "중구청", "중앙로", "대전", "대동", "신흥", "판암"];
 
 // 역간 이동 시간 (단위: 분)
-const stationTimes = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2.15, 1.85, 1.85, 1.7, 1.8, 1.9, 2.3, 2];// 역간거리 초
+const stationTimes = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1.7, 1.7, 2.15, 2.15, 1.85, 1.85, 1.7, 1.8, 1.9, 2.3, 2];// 역간거리 초
 
 let time = 0;
 let timerId = null;
@@ -100,7 +100,7 @@ function startTimer() {
   time = calculateTravelTime(startStation, endStation) * 60; // convert minutes to seconds
   document.getElementById("time").innerHTML = "이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
 
-  // 타이머 초기화
+  // 타이머 끝났을 때 초기화
   if (timerId !== null) {
     clearInterval(timerId);
   }
