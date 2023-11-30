@@ -62,7 +62,6 @@
 </select>
 
 <button onclick="startTimer()">시작</button>
-<button onclick="ResetTimer()">리셋</button>
 
 <p id="time"></p>
 
@@ -81,6 +80,7 @@ let timerId = null;
 // 시간이 다 되면 소리를 넣는 코드
 let alarmSound = new Audio('./tts_file.mp3');
 
+//역 선택 관련 코드 반석 -> 판암 || 판암-> 반석 
 function calculateTravelTime(startStation, endStation) {
     const startIndex = stations.indexOf(startStation);
     const endIndex = stations.indexOf(endStation);
@@ -98,6 +98,7 @@ function calculateTravelTime(startStation, endStation) {
     return time;
 }
 
+// 타이머 시작 버튼 구동 코드
 function startTimer() {
   var startStation = document.getElementById("startStation").value;
   var endStation = document.getElementById("endStation").value;
