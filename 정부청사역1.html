@@ -25,40 +25,7 @@ th:nth-child(2) {
 <body>
 <h1><a href="./index.html">대전 1호선 노선도</a></h1>
 <h2>정부청사역 시간표</h2>
-<h2>도착시간 타이머</h2>
 
-    <p>타이머 시간을 분 단위로 입력하세요.</p>
-
-    <input type="text" id="timeInMinutes" placeholder="분" />
-    <button onclick="startTimer()">타이머 시작</button>
-
-    <p id="timer"></p>
-
-    <audio id="audio" src="./timersound_bibibibip.mp3"></audio>
-
-    <script>
-      function startTimer() {
-        var timeInMinutes = document.getElementById("timeInMinutes").value;
-        var timeInSeconds = timeInMinutes * 60;
-
-        var timer = setInterval(function () {
-          var minutes = parseInt(timeInSeconds / 60, 10);
-          var seconds = parseInt(timeInSeconds % 60, 10);
-
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-
-          document.getElementById("timer").innerHTML =
-            minutes + ":" + seconds;
-
-          if (--timeInSeconds < 0) {
-            clearInterval(timer);
-            document.getElementById("audio").play();
-            alert("도착 15초전!");
-          }
-        }, 1000);
-      }
-    </script>
 <table style="width:100%">
   <caption>정부청사역 시간표</caption>
   <tr>
