@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  height: 40px;
+}
+th, td {
+  padding: 20px;
+}
+th {
+  text-align: center;
+}
+th:nth-child(1) {
+  width: 30%;
+}
+th:nth-child(2) {
+  width: 70%;
+}
+</style>
+</head>
+<body>
+<h1><a href="./index.html">대전 1호선 노선도</a></h1>
+<h2>중구청역 시간표</h2>
+<h2>도착시간 타이머</h2>
+
+    <p>타이머 시간을 분 단위로 입력하세요.</p>
+
+    <input type="text" id="timeInMinutes" placeholder="분" />
+    <button onclick="startTimer()">타이머 시작</button>
+
+    <p id="timer"></p>
+
+    <audio id="audio" src="./timersound_bibibibip.mp3"></audio>
+
+    <script>
+      function startTimer() {
+        var timeInMinutes = document.getElementById("timeInMinutes").value;
+        var timeInSeconds = timeInMinutes * 60;
+
+        var timer = setInterval(function () {
+          var minutes = parseInt(timeInSeconds / 60, 10);
+          var seconds = parseInt(timeInSeconds % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.getElementById("timer").innerHTML =
+            minutes + ":" + seconds;
+
+          if (--timeInSeconds < 0) {
+            clearInterval(timer);
+            document.getElementById("audio").play();
+            alert("도착 15초전!");
+          }
+        }, 1000);
+      }
+    </script>
+<table style="width:100%">
+  <caption>중구청역 시간표</caption>
+  <tr>
+    <th>시간</th>
+    <th>세부 시간</th>
+  </tr>
+  <tr><td>05:00</td><td>
+     42분/
+
+     51분</td></tr>
+  <tr><td>06:00</td><td>
+     00분/
+
+     15분/
+    
+     30분/
+       
+     43분/
+
+     56분</td></tr>
+  <tr><td>07:00</td><td>
+     08분/
+
+     20분/
+    
+     32분/
+    
+     42분/
+
+     52분</td></tr>
+  <tr><td>08:00</td><td>
+     00분/
+
+     06분/
+    
+     12분/
+    
+     18분/
+    
+     24분/
+    
+     30분/
+    
+     35분/
+
+     40분/
+
+     45분/
+
+     50분/
+
+     55분</td></tr>
+  <tr><td>09:00</td><td>
+     00분/
+
+     06분/
+
+     14분/
+    
+     22분/
+
+     30분/
+    
+     40분/
+
+     50분</td></tr>
+  <tr><td>10:00</td><td>
+     00분/
+
+     10분/
+    
+     20분/
+    
+     30분/
+    
+     40분/
+    
+     50분</td></tr>
+  <tr><td>11:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>12:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>13:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>14:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>15:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>16:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>17:00</td><td> 
+    00분/
+
+    10분/
+   
+    20분/
+
+    30분/
+
+    40분/
+
+    50분</td></tr>
+  <tr><td>18:00</td><td>
+     00분/
+
+     10분/
+    
+     18분/
+    
+     25분/
+    
+     31분/
+    
+     36분/
+    
+     41분/
+    
+     46분/
+
+     51분/
+
+     56분</td></tr>
+  <tr><td>19:00</td><td>
+     01분/
+
+     06분/
+    
+     12분/
+    
+     18분/
+    
+     24분/
+
+     30분/
+
+     36분/
+
+     42분/
+
+     50분</td></tr>
+  <tr><td>20:00</td><td>
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>21:00</td><td>
+    00분/
+
+    10분/
+   
+    20분/
+   
+    30분/
+   
+    40분/
+   
+    50분</td></tr>
+  <tr><td>22:00</td><td>
+     00분/
+
+     10분/
+    
+     22분/
+    
+     34분/
+    
+     46분/
+
+    58분</td></tr>
+  <tr><td>23:00</td><td>
+     10분/
+    
+     22분/
+
+     36분/
+    
+     50분</td></tr>
+     <tr><td>24:00</td><td>
+     02분</td></tr>
+</table>
+</body>
+</html>
