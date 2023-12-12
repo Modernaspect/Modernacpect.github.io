@@ -85,17 +85,19 @@ function calculateTravelTime(startStation, endStation) {
     const startIndex = stations.indexOf(startStation);
     const endIndex = stations.indexOf(endStation);
 
+  let travelTime = 0;                           // 타이머가 시작할때 초기화
+
     if (startIndex < endIndex) {
         for (let i = startIndex; i < endIndex; i++) {
-            time += stationTimes[i];
+            travelTime += stationTimes[i];
         }
     } else {
         for (let i = endIndex; i < startIndex; i++) {
-            time += stationTimes[i];
+            travelTime += stationTimes[i];
         }
     }
 
-    return time;
+    return travelTime;
 }
 
 // 타이머 시작 버튼 구동 코드 || 여기서 시작 직후 리셋을 걸고 가면 된다. 근데 어케함
@@ -105,7 +107,7 @@ function startTimer() {
   time = calculateTravelTime(startStation, endStation) * 60; // 입력분을 시간값에 맞는 단위로 변환함 1m = 60s
   document.getElementById("time").innerHTML = "이동 시간: " + Math.floor(time / 60) + "분 " + Math.floor(time % 60) + "초";
 
-  // 타이머 끝났을 때 초기화
+  // 기존 타이머 삭제
   if (timerId !== null) {
     clearInterval(timerId);
   }
